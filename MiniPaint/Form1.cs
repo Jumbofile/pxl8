@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 namespace MiniPaint
 {
+    //URL http://csharphelper.com/blog/2014/12/draw-on-a-bitmap-in-c/
     public partial class Form1 : Form
     {
         public Form1()
@@ -12,6 +13,7 @@ namespace MiniPaint
             InitializeComponent();
             g = pnl_Draw.CreateGraphics();
             pnl_Draw.Size = new Size(0, 0);
+            
         }
         bool startPaint = false;
         Graphics g;
@@ -21,7 +23,11 @@ namespace MiniPaint
         bool drawSquare = false;
         bool drawRectangle = false;
         bool drawCircle = false;
+        Bitmap bm;
+
+        //New image prompt init
         NewPrompt np = new NewPrompt();
+
         //Event fired when the mouse pointer is moved over the Panel(pnl_Draw).
         private void pnl_Draw_MouseMove(object sender, MouseEventArgs e)
         {
@@ -30,6 +36,7 @@ namespace MiniPaint
                 //Setting the Pen BackColor and line Width
                 Pen p = new Pen(btn_PenColor.BackColor, float.Parse(cmb_PenSize.Text));
                 //Drawing the line.
+                //g.DrawRectangle(p, initX ?? e.X, initY ?? e.Y, 1, 1);
                 g.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
                 initX = e.X;
                 initY = e.Y;
@@ -64,6 +71,12 @@ namespace MiniPaint
                 g.FillEllipse(sb, e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
                 startPaint = false;
                 drawCircle = false;
+            }
+            else
+            {
+                Pen p = new Pen(btn_PenColor.BackColor, 1);
+                //Drawing the line.
+                g.DrawRectangle(p, e.X, e.Y, 1, 1);
             }
         }
         //Fired when the mouse pointer is over the pnl_Draw and a mouse button is released.
@@ -104,6 +117,7 @@ namespace MiniPaint
                 int posX = ((this.Width - pnl_Draw.Width) / 2);
                 int posY = ((this.Height - pnl_Draw.Height) / 2);
                 pnl_Draw.Location = new Point(posX, posY);
+                bm = new Bitmap(sizes[0], sizes[1]);
             }
             else
             {
