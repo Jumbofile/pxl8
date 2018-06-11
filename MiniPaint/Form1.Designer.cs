@@ -285,7 +285,7 @@
             // 
             // button2
             // 
-            this.button2.Image = global::MiniPaint.Properties.Resources.pencil;
+            this.button2.Image = global::pxl8.Properties.Resources.pencil;
             this.button2.Location = new System.Drawing.Point(4, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 28);
@@ -341,6 +341,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
@@ -352,8 +353,9 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 

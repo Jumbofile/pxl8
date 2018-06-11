@@ -189,5 +189,21 @@ namespace MiniPaint
             int posY = ((this.Height - pnl_Draw.Height) / 2);
             pnl_Draw.Location = new Point(posX, posY);
         }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Saving image!
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           //g.CopyFromScreen(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+
+            Bitmap bmp = new Bitmap(pnl_Draw.Width, pnl_Draw.Height);//to create bmp of same size as panel
+            Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height); //to set bounds to image
+            panel1.DrawToBitmap(bmp, rect);      // drawing panel1 imgae into bmp of bounds of rect
+            bmp.Save("C:\\a.png", System.Drawing.Imaging.ImageFormat.Png); //save location and type
+        }
     }
 }
