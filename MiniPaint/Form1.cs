@@ -8,9 +8,10 @@ namespace MiniPaint
     {
         public Form1()
         {
-            Console.WriteLine("Hello World!");
+            //Console.WriteLine("Hello World!");
             InitializeComponent();
             g = pnl_Draw.CreateGraphics();
+            pnl_Draw.Size = new Size(0, 0);
         }
         bool startPaint = false;
         Graphics g;
@@ -20,6 +21,7 @@ namespace MiniPaint
         bool drawSquare = false;
         bool drawRectangle = false;
         bool drawCircle = false;
+        NewPrompt np = new NewPrompt();
         //Event fired when the mouse pointer is moved over the Panel(pnl_Draw).
         private void pnl_Draw_MouseMove(object sender, MouseEventArgs e)
         {
@@ -84,13 +86,42 @@ namespace MiniPaint
         //New 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Clearing the graphics from the Panel(pnl_Draw)
-            g.Clear(pnl_Draw.BackColor);
-            //Setting the BackColor of pnl_draw and btn_CanvasColor to White on Clicking New under File Menu
-            pnl_Draw.BackColor = Color.White;
-            btn_CanvasColor.BackColor = Color.White;
+            int x = -1;
+            int y = -1;
+
+            if(x == -1 || y == -1)
+            {
+                np.ShowDialog();
+                int[] sizes = makeImage();
+                //Clearing the graphics from the Panel(pnl_Draw)
+                g.Clear(pnl_Draw.BackColor);
+
+                //size
+                pnl_Draw.Size = new Size(sizes[0], sizes[1]);
+                //Setting the BackColor of pnl_draw and btn_CanvasColor to White on Clicking New under File Menu
+                pnl_Draw.BackColor = Color.White;
+                btn_CanvasColor.BackColor = Color.White;
+                int posX = ((this.Width - pnl_Draw.Width) / 2);
+                int posY = ((this.Height - pnl_Draw.Height) / 2);
+                pnl_Draw.Location = new Point(posX, posY);
+            }
+            else
+            {
+
+            }
+
         }
-       //Setting the Canvas Color
+
+        //Make new image
+        public int[] makeImage()
+        {
+            int x = np.getNumX();
+            int y = np.getNumY();
+            int[] size = new int[] { x, y };
+            return size;
+        }
+
+        //Setting the Canvas Color
         private void btn_CanvasColor_Click_1(object sender, EventArgs e)
         {
             ColorDialog c = new ColorDialog();
@@ -123,6 +154,8 @@ namespace MiniPaint
                 Application.Exit();
             }
         }
+
+       
         //About under Help Menu
         private void aboutMiniPaintToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -136,6 +169,16 @@ namespace MiniPaint
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
