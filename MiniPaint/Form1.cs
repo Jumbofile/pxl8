@@ -25,10 +25,10 @@ namespace MiniPaint
         //Event fired when the mouse pointer is moved over the Panel(pnl_Draw).
         private void pnl_Draw_MouseMove(object sender, MouseEventArgs e)
         {
-            if(startPaint)
+            if (startPaint)
             {
                 //Setting the Pen BackColor and line Width
-                Pen p = new Pen(btn_PenColor.BackColor,float.Parse(cmb_PenSize.Text));
+                Pen p = new Pen(btn_PenColor.BackColor, float.Parse(cmb_PenSize.Text));
                 //Drawing the line.
                 g.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
                 initX = e.X;
@@ -50,15 +50,15 @@ namespace MiniPaint
                 startPaint = false;
                 drawSquare = false;
             }
-            if(drawRectangle)
+            if (drawRectangle)
             {
                 SolidBrush sb = new SolidBrush(btn_PenColor.BackColor);
                 //setting the width twice of the height
-                g.FillRectangle(sb, e.X, e.Y, 2*int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
+                g.FillRectangle(sb, e.X, e.Y, 2 * int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
                 startPaint = false;
                 drawRectangle = false;
             }
-            if(drawCircle)
+            if (drawCircle)
             {
                 SolidBrush sb = new SolidBrush(btn_PenColor.BackColor);
                 g.FillEllipse(sb, e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
@@ -78,7 +78,7 @@ namespace MiniPaint
         {
             //Open Color Dialog and Set BackColor of btn_PenColor if user click on OK
             ColorDialog c = new ColorDialog();
-            if(c.ShowDialog()==DialogResult.OK)
+            if (c.ShowDialog() == DialogResult.OK)
             {
                 btn_PenColor.BackColor = c.Color;
             }
@@ -89,7 +89,7 @@ namespace MiniPaint
             int x = -1;
             int y = -1;
 
-            if(x == -1 || y == -1)
+            if (x == -1 || y == -1)
             {
                 np.ShowDialog();
                 int[] sizes = makeImage();
@@ -125,7 +125,7 @@ namespace MiniPaint
         private void btn_CanvasColor_Click_1(object sender, EventArgs e)
         {
             ColorDialog c = new ColorDialog();
-            if(c.ShowDialog()==DialogResult.OK)
+            if (c.ShowDialog() == DialogResult.OK)
             {
                 pnl_Draw.BackColor = c.Color;
                 btn_CanvasColor.BackColor = c.Color;
@@ -149,13 +149,13 @@ namespace MiniPaint
         //Exit under File Menu
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Do you want to Exit?","Exit",MessageBoxButtons.YesNo,MessageBoxIcon.Information)==DialogResult.Yes)
+            if (MessageBox.Show("Do you want to Exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 Application.Exit();
             }
         }
 
-       
+
         //About under Help Menu
         private void aboutMiniPaintToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -181,6 +181,13 @@ namespace MiniPaint
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            int posX = ((this.Width - pnl_Draw.Width) / 2);
+            int posY = ((this.Height - pnl_Draw.Height) / 2);
+            pnl_Draw.Location = new Point(posX, posY);
         }
     }
 }

@@ -78,7 +78,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(141, 427);
+            this.panel1.Size = new System.Drawing.Size(141, 378);
             this.panel1.TabIndex = 0;
             // 
             // panel7
@@ -380,8 +380,8 @@
             // aboutMiniPaintToolStripMenuItem
             // 
             this.aboutMiniPaintToolStripMenuItem.Name = "aboutMiniPaintToolStripMenuItem";
-            this.aboutMiniPaintToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.aboutMiniPaintToolStripMenuItem.Text = "About Mini Paint";
+            this.aboutMiniPaintToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutMiniPaintToolStripMenuItem.Text = "About pxl8";
             this.aboutMiniPaintToolStripMenuItem.Click += new System.EventHandler(this.aboutMiniPaintToolStripMenuItem_Click);
             // 
             // pnl_Draw
@@ -410,6 +410,7 @@
             this.Text = "pxl8";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
