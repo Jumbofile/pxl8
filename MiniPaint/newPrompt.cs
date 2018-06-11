@@ -39,5 +39,10 @@ namespace MiniPaint
         {
             return yNum;
         }
+
+        private void NewPrompt_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

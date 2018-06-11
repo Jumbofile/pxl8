@@ -113,6 +113,7 @@
             this.Name = "NewPrompt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Image";
+            this.Load += new System.EventHandler(this.NewPrompt_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

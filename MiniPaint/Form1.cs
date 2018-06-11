@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace MiniPaint
@@ -9,7 +10,7 @@ namespace MiniPaint
     {
         public Form1()
         {
-            //Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello World!");
             InitializeComponent();
             g = pnl_Draw.CreateGraphics();
             pnl_Draw.Size = new Size(0, 0);
@@ -33,14 +34,33 @@ namespace MiniPaint
         {
             if (startPaint)
             {
+                System.Diagnostics.Debug.WriteLine("start");
                 //Setting the Pen BackColor and line Width
                 Pen p = new Pen(btn_PenColor.BackColor, float.Parse(cmb_PenSize.Text));
                 //Drawing the line.
                 //g.DrawRectangle(p, initX ?? e.X, initY ?? e.Y, 1, 1);
-                g.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
-                initX = e.X;
-                initY = e.Y;
+                //g.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
+                //initX = e.X;
+                //initY = e.Y;
+                using (Graphics gr = Graphics.FromImage(bm))
+                {
+                    System.Diagnostics.Debug.WriteLine("Draw");
+                    gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+                    Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                    gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
+                    initX = e.X;
+                    initY = e.Y;
+                    gr.FillEllipse(Brushes.LightGreen, rect);
+                   // using (Pen thick_pen = new Pen(Color.Blue, 5))
+                   // {
+                        //gr.DrawEllipse(thick_pen, rect);
+                    //}
+                }
+               
+
             }
+            pnl_Draw.Image = bm;
         }
         //Event Fired when the mouse pointer is over Panel and a mouse button is pressed
         private void pnl_Draw_MouseDown(object sender, MouseEventArgs e)
@@ -117,7 +137,9 @@ namespace MiniPaint
                 int posX = ((this.Width - pnl_Draw.Width) / 2);
                 int posY = ((this.Height - pnl_Draw.Height) / 2);
                 pnl_Draw.Location = new Point(posX, posY);
-                bm = new Bitmap(sizes[0], sizes[1]);
+                System.Diagnostics.Debug.WriteLine("start");
+                Bitmap bitm = new Bitmap(sizes[0], sizes[1]);
+                bm = bitm;
             }
             else
             {
@@ -212,12 +234,45 @@ namespace MiniPaint
         //Saving image!
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           //g.CopyFromScreen(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "PNG Image|*.png|JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
+            dialog.Title = "Save an Image File";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                int width = Convert.ToInt32(pnl_Draw.Width);
+                int height = Convert.ToInt32(pnl_Draw.Height);
+                Bitmap bmp = new Bitmap(width, height);
+                pnl_Draw.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
+                switch (dialog.FilterIndex)
+                {
+                    case 1:
+                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                        break;
 
-            Bitmap bmp = new Bitmap(pnl_Draw.Width, pnl_Draw.Height);//to create bmp of same size as panel
-            Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height); //to set bounds to image
-            panel1.DrawToBitmap(bmp, rect);      // drawing panel1 imgae into bmp of bounds of rect
-            bmp.Save("C:\\a.png", System.Drawing.Imaging.ImageFormat.Png); //save location and type
+                    case 2:
+                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+
+                    case 3:
+                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                    case 4:
+                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
+                        break;
+                }
+                //bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+            }
+        }
+
+        private void pnl_Draw_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Loading a file
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
