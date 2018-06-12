@@ -278,7 +278,7 @@ namespace MiniPaint
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "PNG Image|*.png|JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
+            dialog.Filter = "PNG Image|*.png|JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Icon FIle|*.ico";
             dialog.Title = "Save an Image File";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -302,6 +302,9 @@ namespace MiniPaint
                     case 4:
                         bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
                         break;
+                    case 5:
+                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Icon);
+                        break;
                 }
                 //bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
             }
@@ -315,7 +318,17 @@ namespace MiniPaint
         //Loading a file
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var bmp = (Bitmap)Image.FromFile(@"c:\temp\bitmap-flower.jpg");
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "PNG Image|*.png|JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Icon FIle|*.ico";
+            dialog.Title = "Save an Image File";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap bmp = (Bitmap)Image.FromFile(dialog.FileName);
+                pnl_Draw.Size = new Size(bmp.Width, bmp.Height);
+                imageSizelbl.Text = bmp.Width + " x " + bmp.Height + "px";
+                bm = bmp;
+                pnl_Draw.Image = bm;
+            }
         }
 
         private void pencilButton_Click(object sender, EventArgs e)
