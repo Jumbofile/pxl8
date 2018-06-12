@@ -167,6 +167,11 @@ namespace MiniPaint
                     posY++;
                 }
 
+                while (posX <= (0 + 10))
+                {
+                    posX++;
+                }
+
                 pnl_Draw.Location = new Point(posX, posY);
                 System.Diagnostics.Debug.WriteLine("start");
                 Bitmap bitm = new Bitmap(sizes[0], sizes[1]);
@@ -261,6 +266,11 @@ namespace MiniPaint
             while (posY <= (10 + menuStrip1.Height))
             {
                 posY++;
+            }
+
+            while (posX <= (0 + 10))
+            {
+                posX++;
             }
 
             pnl_Draw.Location = new Point(posX, posY);
