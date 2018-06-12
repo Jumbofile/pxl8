@@ -14,6 +14,8 @@ namespace MiniPaint
             InitializeComponent();
             g = pnl_Draw.CreateGraphics();
             pnl_Draw.Size = new Size(0, 0);
+            imageSizelbl.Text = "0 x 0px";
+            imageSizelbl.Location = new Point(this.Width - 210, 4);
             
         }
         bool startPaint = false;
@@ -24,6 +26,7 @@ namespace MiniPaint
         bool drawSquare = false;
         bool drawRectangle = false;
         bool drawCircle = false;
+        string tool = "pencil";
         Bitmap bm;
 
         //New image prompt init
@@ -36,7 +39,7 @@ namespace MiniPaint
             {
                 System.Diagnostics.Debug.WriteLine("start");
                 //Setting the Pen BackColor and line Width
-                Pen p = new Pen(btn_PenColor.BackColor, float.Parse(cmb_PenSize.Text));
+                Pen p = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
                 //Drawing the line.
                 //g.DrawRectangle(p, initX ?? e.X, initY ?? e.Y, 1, 1);
                 //g.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
@@ -44,17 +47,38 @@ namespace MiniPaint
                 //initY = e.Y;
                 using (Graphics gr = Graphics.FromImage(bm))
                 {
-                    System.Diagnostics.Debug.WriteLine("Draw");
-                    gr.SmoothingMode = SmoothingMode.AntiAlias;
+                    if (tool == "marker") { 
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        gr.SmoothingMode = SmoothingMode.AntiAlias;
 
-                    Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                    gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
-                    initX = e.X;
-                    initY = e.Y;
-                    gr.FillEllipse(Brushes.LightGreen, rect);
-                   // using (Pen thick_pen = new Pen(Color.Blue, 5))
-                   // {
-                        //gr.DrawEllipse(thick_pen, rect);
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
+                        initX = e.X;
+                        initY = e.Y;
+                    }else if (tool == "pencil")
+                    {
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        //gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawRectangle(p, new Rectangle(initX ?? e.X, initY ?? e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
+                        initX = e.X;
+                        initY = e.Y;
+                    }
+                    else if (tool == "pen")
+                    {
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawEllipse(p, new Rectangle(e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
+                        initX = e.X;
+                        initY = e.Y;
+                    }
+                    //gr.FillEllipse(Brushes.LightGreen, rect);
+                    // using (Pen thick_pen = new Pen(Color.Blue, 5))
+                    // {
+                    //gr.DrawEllipse(thick_pen, rect);
                     //}
                 }
                
@@ -136,9 +160,17 @@ namespace MiniPaint
                 btn_CanvasColor.BackColor = Color.White;
                 int posX = ((this.Width - pnl_Draw.Width) / 2);
                 int posY = ((this.Height - pnl_Draw.Height) / 2);
+
+                //Dont cut off the canvas
+                while(posY <= (10 + menuStrip1.Height))
+                {
+                    posY++;
+                }
+
                 pnl_Draw.Location = new Point(posX, posY);
                 System.Diagnostics.Debug.WriteLine("start");
                 Bitmap bitm = new Bitmap(sizes[0], sizes[1]);
+                imageSizelbl.Text = sizes[0] + " x " + sizes[1]+"px";
                 bm = bitm;
             }
             else
@@ -221,9 +253,20 @@ namespace MiniPaint
 
         private void Form1_Resize(object sender, EventArgs e)
         {
+            //Center the canvas
             int posX = ((this.Width - pnl_Draw.Width) / 2);
             int posY = ((this.Height - pnl_Draw.Height) / 2);
+
+            //Dont cut off the canvas
+            while (posY <= (10 + menuStrip1.Height))
+            {
+                posY++;
+            }
+
             pnl_Draw.Location = new Point(posX, posY);
+
+            //Put canvas size label in right location
+            imageSizelbl.Location = new Point(this.Width - 210, 4);
         }
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -272,7 +315,22 @@ namespace MiniPaint
         //Loading a file
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var bmp = (Bitmap)Image.FromFile(@"c:\temp\bitmap-flower.jpg");
+        }
 
+        private void pencilButton_Click(object sender, EventArgs e)
+        {
+            tool = "pencil";
+        }
+
+        private void markerButton_Click(object sender, EventArgs e)
+        {
+            tool = "marker";
+        }
+
+        private void penButton_Click(object sender, EventArgs e)
+        {
+            tool = "pen";
         }
     }
 }
