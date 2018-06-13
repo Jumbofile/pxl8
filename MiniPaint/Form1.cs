@@ -13,6 +13,8 @@ namespace MiniPaint
             Console.WriteLine("Hello World!");
             InitializeComponent();
             g = pnl_Draw.CreateGraphics();
+            panel9.Size = new Size(this.Width, this.Height - 24);
+            panel9.Location = new Point(0, 24);
             pnl_Draw.Size = new Size(0, 0);
             imageSizelbl.Text = "0 x 0px";
             imageSizelbl.Location = new Point(this.Width - 210, 4);
@@ -158,11 +160,11 @@ namespace MiniPaint
                 //Setting the BackColor of pnl_draw and btn_CanvasColor to White on Clicking New under File Menu
                 pnl_Draw.BackColor = Color.White;
                 btn_CanvasColor.BackColor = Color.White;
-                int posX = ((this.Width - pnl_Draw.Width) / 2);
-                int posY = ((this.Height - pnl_Draw.Height) / 2);
+                int posX = ((panel9.Width - pnl_Draw.Width) / 2);
+                int posY = ((panel9.Height - pnl_Draw.Height) / 2);
 
                 //Dont cut off the canvas
-                while(posY <= (10 + menuStrip1.Height))
+                while(posY <= (34))
                 {
                     posY++;
                 }
@@ -258,12 +260,14 @@ namespace MiniPaint
 
         private void Form1_Resize(object sender, EventArgs e)
         {
+            panel9.Size = new Size(this.Width, this.Height - 24);
+            panel9.Location = new Point(0, 24);
             //Center the canvas
-            int posX = ((this.Width - pnl_Draw.Width) / 2);
-            int posY = ((this.Height - pnl_Draw.Height) / 2);
+            int posX = ((panel9.Width - pnl_Draw.Width) / 2);
+            int posY = ((panel9.Height - pnl_Draw.Height) / 2);
 
             //Dont cut off the canvas
-            while (posY <= (10 + menuStrip1.Height))
+            while (posY <= (34))
             {
                 posY++;
             }
@@ -334,6 +338,7 @@ namespace MiniPaint
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Bitmap bmp = (Bitmap)Image.FromFile(dialog.FileName);
+                panel9.Location = new Point(0, 24);
                 pnl_Draw.Size = new Size(bmp.Width, bmp.Height);
                 imageSizelbl.Text = bmp.Width + " x " + bmp.Height + "px";
                 bm = bmp;
@@ -354,6 +359,11 @@ namespace MiniPaint
         private void penButton_Click(object sender, EventArgs e)
         {
             tool = "pen";
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
