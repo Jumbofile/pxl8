@@ -474,7 +474,6 @@
             // panel9
             // 
             this.panel9.AutoScroll = true;
-            this.panel9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel9.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel9.Controls.Add(this.pnl_Draw);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -485,8 +484,7 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(744, 451);
