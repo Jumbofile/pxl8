@@ -99,7 +99,7 @@
             this.MinimizeBox = false;
             this.Name = "About";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "About Mini Paint";
+            this.Text = "About pxl8";
             this.ResumeLayout(false);
             this.PerformLayout();
 

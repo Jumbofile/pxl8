@@ -67,6 +67,7 @@
             this.pnl_Draw = new System.Windows.Forms.PictureBox();
             this.imageSizelbl = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -412,22 +413,24 @@
             // resizeToolStripMenuItem
             // 
             this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
-            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.resizeToolStripMenuItem.Text = "Resize";
             // 
             // filterToolStripMenuItem
             // 
             this.filterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.blackAndWhiteToolStripMenuItem});
+            this.blackAndWhiteToolStripMenuItem,
+            this.sepiaToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.filterToolStripMenuItem.Text = "Filter";
             // 
             // blackAndWhiteToolStripMenuItem
             // 
             this.blackAndWhiteToolStripMenuItem.Name = "blackAndWhiteToolStripMenuItem";
-            this.blackAndWhiteToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.blackAndWhiteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.blackAndWhiteToolStripMenuItem.Text = "Black and White";
+            this.blackAndWhiteToolStripMenuItem.Click += new System.EventHandler(this.blackAndWhiteToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -481,6 +484,13 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(744, 451);
             this.panel9.TabIndex = 10;
+            // 
+            // sepiaToolStripMenuItem
+            // 
+            this.sepiaToolStripMenuItem.Name = "sepiaToolStripMenuItem";
+            this.sepiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sepiaToolStripMenuItem.Text = "Sepia";
+            this.sepiaToolStripMenuItem.Click += new System.EventHandler(this.sepiaToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -564,6 +574,7 @@
         private System.Windows.Forms.Button markerButton;
         private System.Windows.Forms.Button penButton;
         private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.ToolStripMenuItem sepiaToolStripMenuItem;
     }
 }
 
