@@ -92,39 +92,54 @@ namespace MiniPaint
         //Event Fired when the mouse pointer is over Panel and a mouse button is pressed
         private void pnl_Draw_MouseDown(object sender, MouseEventArgs e)
         {
+            //Setting the Pen BackColor and line Width
+            Pen p = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
+            using (Graphics gr = Graphics.FromImage(bm))
+            {
+                /**
+                 * This method basically allows the user to draw pixel by pixel or place a dot on the canvas
+                 * Straight copy of the Drawing method but its on mouse down with a startPaint == false condition
+                 **/
+
+                if (!startPaint)
+                {
+                    if (tool == "marker")
+                    {
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
+                        initX = e.X;
+                        initY = e.Y;
+                    }
+                    else if (tool == "pencil")
+                    {
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        //gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawRectangle(p, new Rectangle(initX ?? e.X, initY ?? e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
+                        initX = e.X;
+                        initY = e.Y;
+                    }
+                    else if (tool == "pen")
+                    {
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawEllipse(p, new Rectangle(e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
+                        initX = e.X;
+                        initY = e.Y;
+                    }
+                }
+                //Prints to the bitmap
+                pnl_Draw.Image = bm;
+            }
+
+            //This has to become true for the drawing lines method to work above, in other words, dont touch this
             startPaint = true;
-            if (drawSquare)
-            {
-                //Use Solid Brush for filling the graphic shapes
-                SolidBrush sb = new SolidBrush(btn_PenColor.BackColor);
-                //setting the width and height same for creating square.
-                //Getting the width and Heigt value from Textbox(txt_ShapeSize)
-                g.FillRectangle(sb, e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
-                //setting startPaint and drawSquare value to false for creating one graphic on one click.
-                startPaint = false;
-                drawSquare = false;
-            }
-            if (drawRectangle)
-            {
-                SolidBrush sb = new SolidBrush(btn_PenColor.BackColor);
-                //setting the width twice of the height
-                g.FillRectangle(sb, e.X, e.Y, 2 * int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
-                startPaint = false;
-                drawRectangle = false;
-            }
-            if (drawCircle)
-            {
-                SolidBrush sb = new SolidBrush(btn_PenColor.BackColor);
-                g.FillEllipse(sb, e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
-                startPaint = false;
-                drawCircle = false;
-            }
-            else
-            {
-                Pen p = new Pen(btn_PenColor.BackColor, 1);
-                //Drawing the line.
-                g.DrawRectangle(p, e.X, e.Y, 1, 1);
-            }
         }
         //Fired when the mouse pointer is over the pnl_Draw and a mouse button is released.
         private void pnl_Draw_MouseUp(object sender, MouseEventArgs e)
@@ -313,7 +328,8 @@ namespace MiniPaint
 
         private void pnl_Draw_Click(object sender, EventArgs e)
         {
-
+            
+            
         }
 
         //Loading a file
