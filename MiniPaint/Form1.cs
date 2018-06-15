@@ -119,84 +119,43 @@ namespace MiniPaint
 
                 if (!startPaint)
                 {
-                    /*if (tool == "marker")
-                    {
-                        System.Diagnostics.Debug.WriteLine("Draw");
-                        gr.SmoothingMode = SmoothingMode.AntiAlias;
-
-                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
-                        initX = e.X;
-                        initY = e.Y;
-                    }
-                    else */
-                    if (tool == "pencil")
-                    {
-                        Pen pencil = new Pen(btn_PenColor.BackColor, 1);
-                        System.Diagnostics.Debug.WriteLine("Draw");
-                        //gr.SmoothingMode = SmoothingMode.AntiAlias;
-
-                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawRectangle(pencil, e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
-                        initX = e.X;
-                        initY = e.Y;
-                    }/*
-                    else if (tool == "pen")
-                    {
-                        System.Diagnostics.Debug.WriteLine("Draw");
-                        gr.SmoothingMode = SmoothingMode.AntiAlias;
-
-                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawEllipse(p, new Rectangle(e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
-                        initX = e.X;
-                        initY = e.Y;
-                    }*/
                     if (tool == "marker")
                     {
-                        Pen p = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
-                        p.StartCap = LineCap.Flat;
-                        p.EndCap = LineCap.Flat;
-                        p.LineJoin = LineJoin.Bevel;
-                        System.Diagnostics.Debug.WriteLine("Draw");
-                        gr.SmoothingMode = SmoothingMode.AntiAlias;
-                        gr.CompositingQuality = CompositingQuality.HighQuality;
-                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
-                        initX = e.X;
-                        initY = e.Y;
-                    }/*
-                    else if (tool == "pencil")
-                    {
-                        Pen pencil = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
+                        //Pen pencil = new Pen(btn_PenColor.BackColor, 0);
+                        SolidBrush marker = new SolidBrush(btn_PenColor.BackColor);
                         System.Diagnostics.Debug.WriteLine("Draw");
                         //gr.SmoothingMode = SmoothingMode.AntiAlias;
-                        pencil.StartCap = LineCap.Square;
-                        pencil.EndCap = LineCap.Square;
-                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawLine(pencil, new Point(e.X, e.Y), new Point(e.X, e.Y));
-                        initX = e.X;
-                        initY = e.Y;
-                    }*/
-                    else if (tool == "pen")
-                    {
-                        Pen pen = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
-                        System.Diagnostics.Debug.WriteLine("Draw");
-                        gr.SmoothingMode = SmoothingMode.AntiAlias;
-                        gr.CompositingQuality = CompositingQuality.HighQuality;
-
-                        pen.StartCap = LineCap.Round;
-
-                        pen.EndCap = LineCap.Round;
-
-                        //Set of two part link style
-
-                        pen.LineJoin = LineJoin.Round;
 
                         Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawLine(pen, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
+                        gr.FillRectangle(marker, e.X - (int.Parse(txt_ShapeSize.Text) / 2), e.Y - (int.Parse(txt_ShapeSize.Text) / 2), int.Parse(txt_ShapeSize.Text) / 2, int.Parse(txt_ShapeSize.Text));
                         initX = e.X;
                         initY = e.Y;
                     }
+                    else if (tool == "pencil")
+                    {
+                        //Pen pencil = new Pen(btn_PenColor.BackColor, 0);
+                        SolidBrush pencil = new SolidBrush(btn_PenColor.BackColor);
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        //gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.FillRectangle(pencil, e.X - (int.Parse(txt_ShapeSize.Text) / 2), e.Y - (int.Parse(txt_ShapeSize.Text) / 2), int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
+                        initX = e.X;
+                        initY = e.Y;
+                    }
+                    else if (tool == "pen")
+                    {
+                        //Pen pencil = new Pen(btn_PenColor.BackColor, 0);
+                        SolidBrush pen = new SolidBrush(btn_PenColor.BackColor);
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.FillEllipse(pen, e.X - (int.Parse(txt_ShapeSize.Text) / 2), e.Y - (int.Parse(txt_ShapeSize.Text) / 2), int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
+                        initX = e.X;
+                        initY = e.Y;
+                    }
+                   
                 }
                 //Prints to the bitmap
                 pnl_Draw.Image = bm;
