@@ -62,12 +62,13 @@
             this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blackAndWhiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMiniPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_Draw = new System.Windows.Forms.PictureBox();
             this.imageSizelbl = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eraserButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -84,6 +85,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.eraserButton);
             this.panel1.Controls.Add(this.penButton);
             this.panel1.Controls.Add(this.markerButton);
             this.panel1.Controls.Add(this.pencilButton);
@@ -413,7 +415,7 @@
             // resizeToolStripMenuItem
             // 
             this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
-            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.resizeToolStripMenuItem.Text = "Resize";
             // 
             // filterToolStripMenuItem
@@ -422,15 +424,22 @@
             this.blackAndWhiteToolStripMenuItem,
             this.sepiaToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.filterToolStripMenuItem.Text = "Filter";
             // 
             // blackAndWhiteToolStripMenuItem
             // 
             this.blackAndWhiteToolStripMenuItem.Name = "blackAndWhiteToolStripMenuItem";
-            this.blackAndWhiteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.blackAndWhiteToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.blackAndWhiteToolStripMenuItem.Text = "Black and White";
             this.blackAndWhiteToolStripMenuItem.Click += new System.EventHandler(this.blackAndWhiteToolStripMenuItem_Click);
+            // 
+            // sepiaToolStripMenuItem
+            // 
+            this.sepiaToolStripMenuItem.Name = "sepiaToolStripMenuItem";
+            this.sepiaToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.sepiaToolStripMenuItem.Text = "Sepia";
+            this.sepiaToolStripMenuItem.Click += new System.EventHandler(this.sepiaToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -485,12 +494,15 @@
             this.panel9.Size = new System.Drawing.Size(744, 451);
             this.panel9.TabIndex = 10;
             // 
-            // sepiaToolStripMenuItem
+            // eraserButton
             // 
-            this.sepiaToolStripMenuItem.Name = "sepiaToolStripMenuItem";
-            this.sepiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sepiaToolStripMenuItem.Text = "Sepia";
-            this.sepiaToolStripMenuItem.Click += new System.EventHandler(this.sepiaToolStripMenuItem_Click);
+            this.eraserButton.Location = new System.Drawing.Point(7, 102);
+            this.eraserButton.Name = "eraserButton";
+            this.eraserButton.Size = new System.Drawing.Size(27, 27);
+            this.eraserButton.TabIndex = 11;
+            this.eraserButton.Text = "E";
+            this.eraserButton.UseVisualStyleBackColor = true;
+            this.eraserButton.Click += new System.EventHandler(this.eraserButton_Click);
             // 
             // Form1
             // 
@@ -575,6 +587,7 @@
         private System.Windows.Forms.Button penButton;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ToolStripMenuItem sepiaToolStripMenuItem;
+        private System.Windows.Forms.Button eraserButton;
     }
 }
 

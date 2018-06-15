@@ -7,6 +7,7 @@ using System.Windows.Forms;
 namespace MiniPaint
 {
     //URL http://csharphelper.com/blog/2014/12/draw-on-a-bitmap-in-c/
+    //https://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=6556
     public partial class Form1 : Form
     {
         public Form1()
@@ -94,6 +95,26 @@ namespace MiniPaint
                         initX = e.X;
                         initY = e.Y;
                     }
+                    else if (tool == "eraser")
+                    {
+                        Pen er = new Pen(Color.Transparent, float.Parse(txt_ShapeSize.Text));
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        //gr.SmoothingMode = SmoothingMode.AntiAlias;
+                        //gr.CompositingQuality = CompositingQuality.HighQuality;
+
+                        er.StartCap = LineCap.Round;
+
+                        er.EndCap = LineCap.Round;
+
+                        //Set of two part link style
+
+                        er.LineJoin = LineJoin.Round;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawLine(er, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
+                        initX = e.X;
+                        initY = e.Y;
+                    }
                     //gr.FillEllipse(Brushes.LightGreen, rect);
                     // using (Pen thick_pen = new Pen(Color.Blue, 5))
                     // {
@@ -115,6 +136,7 @@ namespace MiniPaint
                 /**
                  * This method basically allows the user to draw pixel by pixel or place a dot on the canvas
                  * Straight copy of the Drawing method but its on mouse down with a startPaint == false condition
+                 * and uses brushs instead of pens to fill in the static shape
                  **/
 
                 if (!startPaint)
@@ -391,6 +413,11 @@ namespace MiniPaint
             tool = "pen";
         }
 
+        private void eraserButton_Click(object sender, EventArgs e)
+        {
+            tool = "eraser";
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -475,5 +502,7 @@ namespace MiniPaint
             bm = sepiaEffect;
             pnl_Draw.Image = bm;
         }
+
+        
     }
 }
