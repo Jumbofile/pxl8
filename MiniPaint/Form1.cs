@@ -42,7 +42,7 @@ namespace MiniPaint
             {
                 System.Diagnostics.Debug.WriteLine("start");
                 //Setting the Pen BackColor and line Width
-                Pen p = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
+                
                 //Drawing the line.
                 //g.DrawRectangle(p, initX ?? e.X, initY ?? e.Y, 1, 1);
                 //g.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
@@ -50,31 +50,47 @@ namespace MiniPaint
                 //initY = e.Y;
                 using (Graphics gr = Graphics.FromImage(bm))
                 {
-                    if (tool == "marker") { 
+                    if (tool == "marker") {
+                        Pen p = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
+                        p.StartCap = LineCap.Flat;
+                        p.EndCap = LineCap.Flat;
+                        p.LineJoin = LineJoin.Miter;
                         System.Diagnostics.Debug.WriteLine("Draw");
                         gr.SmoothingMode = SmoothingMode.AntiAlias;
-
+                        gr.CompositingQuality = CompositingQuality.HighQuality;
                         Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
                         gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
                         initX = e.X;
                         initY = e.Y;
                     }else if (tool == "pencil")
                     {
+                        Pen pencil = new Pen(btn_PenColor.BackColor, int.Parse(txt_ShapeSize.Text));
                         System.Diagnostics.Debug.WriteLine("Draw");
                         //gr.SmoothingMode = SmoothingMode.AntiAlias;
-
+                        pencil.StartCap = LineCap.Square;
+                        pencil.EndCap = LineCap.Square;
                         Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawRectangle(p, new Rectangle(initX ?? e.X, initY ?? e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
+                        gr.DrawLine(pencil, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
                         initX = e.X;
                         initY = e.Y;
                     }
                     else if (tool == "pen")
                     {
+                        Pen pen = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
                         System.Diagnostics.Debug.WriteLine("Draw");
                         gr.SmoothingMode = SmoothingMode.AntiAlias;
+                        gr.CompositingQuality = CompositingQuality.HighQuality;
+
+                        pen.StartCap = LineCap.Round;
+
+                        pen.EndCap = LineCap.Round;
+
+                        //Set of two part link style
+
+                        pen.LineJoin = LineJoin.Round;
 
                         Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawEllipse(p, new Rectangle(e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
+                        gr.DrawLine(pen, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
                         initX = e.X;
                         initY = e.Y;
                     }
@@ -93,7 +109,7 @@ namespace MiniPaint
         private void pnl_Draw_MouseDown(object sender, MouseEventArgs e)
         {
             //Setting the Pen BackColor and line Width
-            Pen p = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
+            //Pen p = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
             using (Graphics gr = Graphics.FromImage(bm))
             {
                 /**
@@ -103,7 +119,7 @@ namespace MiniPaint
 
                 if (!startPaint)
                 {
-                    if (tool == "marker")
+                    /*if (tool == "marker")
                     {
                         System.Diagnostics.Debug.WriteLine("Draw");
                         gr.SmoothingMode = SmoothingMode.AntiAlias;
@@ -113,16 +129,18 @@ namespace MiniPaint
                         initX = e.X;
                         initY = e.Y;
                     }
-                    else if (tool == "pencil")
+                    else */
+                    if (tool == "pencil")
                     {
+                        Pen pencil = new Pen(btn_PenColor.BackColor, 1);
                         System.Diagnostics.Debug.WriteLine("Draw");
                         //gr.SmoothingMode = SmoothingMode.AntiAlias;
 
                         Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
-                        gr.DrawRectangle(p, new Rectangle(initX ?? e.X, initY ?? e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
+                        gr.DrawRectangle(pencil, e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
                         initX = e.X;
                         initY = e.Y;
-                    }
+                    }/*
                     else if (tool == "pen")
                     {
                         System.Diagnostics.Debug.WriteLine("Draw");
@@ -130,6 +148,52 @@ namespace MiniPaint
 
                         Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
                         gr.DrawEllipse(p, new Rectangle(e.X, e.Y, int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text)));
+                        initX = e.X;
+                        initY = e.Y;
+                    }*/
+                    if (tool == "marker")
+                    {
+                        Pen p = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
+                        p.StartCap = LineCap.Flat;
+                        p.EndCap = LineCap.Flat;
+                        p.LineJoin = LineJoin.Bevel;
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        gr.SmoothingMode = SmoothingMode.AntiAlias;
+                        gr.CompositingQuality = CompositingQuality.HighQuality;
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
+                        initX = e.X;
+                        initY = e.Y;
+                    }/*
+                    else if (tool == "pencil")
+                    {
+                        Pen pencil = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        //gr.SmoothingMode = SmoothingMode.AntiAlias;
+                        pencil.StartCap = LineCap.Square;
+                        pencil.EndCap = LineCap.Square;
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawLine(pencil, new Point(e.X, e.Y), new Point(e.X, e.Y));
+                        initX = e.X;
+                        initY = e.Y;
+                    }*/
+                    else if (tool == "pen")
+                    {
+                        Pen pen = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
+                        System.Diagnostics.Debug.WriteLine("Draw");
+                        gr.SmoothingMode = SmoothingMode.AntiAlias;
+                        gr.CompositingQuality = CompositingQuality.HighQuality;
+
+                        pen.StartCap = LineCap.Round;
+
+                        pen.EndCap = LineCap.Round;
+
+                        //Set of two part link style
+
+                        pen.LineJoin = LineJoin.Round;
+
+                        Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
+                        gr.DrawLine(pen, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
                         initX = e.X;
                         initY = e.Y;
                     }
@@ -337,7 +401,7 @@ namespace MiniPaint
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "PNG Image|*.png|JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Icon FIle|*.ico";
-            dialog.Title = "Save an Image File";
+            dialog.Title = "Open an Image File";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Bitmap bmp = (Bitmap)Image.FromFile(dialog.FileName);
