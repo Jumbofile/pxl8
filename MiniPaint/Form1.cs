@@ -27,9 +27,6 @@ namespace MiniPaint
         //nullable int for storing Null value
         int? initX = null;
         int? initY = null;
-        bool drawSquare = false;
-        bool drawRectangle = false;
-        bool drawCircle = false;
         string tool = "pencil";
         Bitmap bm;
 
@@ -203,7 +200,12 @@ namespace MiniPaint
                 btn_PenColor.BackColor = c.Color;
             }
         }
-        //New 
+
+        /**
+         * MAKING A NEW IMAGE
+         * I CAN NEVER FIND THIS SO THIS IS MY SOLUTION
+         * YAYAYAYAYAYAYAYAY!!!1!
+         **/
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int x = -1;
@@ -219,12 +221,13 @@ namespace MiniPaint
                 //size
                 pnl_Draw.Size = new Size(sizes[0], sizes[1]);
                 //Setting the BackColor of pnl_draw and btn_CanvasColor to White on Clicking New under File Menu
-                pnl_Draw.BackColor = Color.White;
-                btn_CanvasColor.BackColor = Color.White;
+                pnl_Draw.BackColor = Color.Transparent;
+                //btn_CanvasColor.BackColor = Color.White;
                 //center panel
                 centerPanel();
                 System.Diagnostics.Debug.WriteLine("start");
                 Bitmap bitm = new Bitmap(sizes[0], sizes[1]);
+                
                 imageSizelbl.Text = sizes[0] + " x " + sizes[1]+"px";
                 bm = bitm;
             }
@@ -250,24 +253,24 @@ namespace MiniPaint
             ColorDialog c = new ColorDialog();
             if (c.ShowDialog() == DialogResult.OK)
             {
-                pnl_Draw.BackColor = c.Color;
-                btn_CanvasColor.BackColor = c.Color;
+                //pnl_Draw.BackColor = c.Color;
+                //btn_CanvasColor.BackColor = c.Color;
             }
         }
 
         private void btn_Square_Click(object sender, EventArgs e)
         {
-            drawSquare = true;
+            //drawSquare = true;
         }
 
         private void btn_Rectangle_Click(object sender, EventArgs e)
         {
-            drawRectangle = true;
+            //drawRectangle = true;
         }
 
         private void btn_Circle_Click(object sender, EventArgs e)
         {
-            drawCircle = true;
+            //drawCircle = true;
         }
         //Exit under File Menu
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -350,21 +353,21 @@ namespace MiniPaint
                 switch (dialog.FilterIndex)
                 {
                     case 1:
-                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                        bm.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
                         break;
 
                     case 2:
-                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        bm.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
                         break;
 
                     case 3:
-                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                        bm.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
                         break;
                     case 4:
-                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
+                        bm.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
                         break;
                     case 5:
-                        bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Icon);
+                        bm.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Icon);
                         break;
                 }
                 //bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Png);

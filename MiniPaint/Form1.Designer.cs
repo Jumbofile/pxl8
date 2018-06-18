@@ -470,6 +470,7 @@
             // pnl_Draw
             // 
             this.pnl_Draw.BackColor = System.Drawing.Color.White;
+            this.pnl_Draw.BackgroundImage = global::pxl8.Properties.Resources.Transparency10;
             this.pnl_Draw.Location = new System.Drawing.Point(0, 0);
             this.pnl_Draw.Name = "pnl_Draw";
             this.pnl_Draw.Size = new System.Drawing.Size(5000, 5000);
