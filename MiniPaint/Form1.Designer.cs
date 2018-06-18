@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.eraserButton = new System.Windows.Forms.Button();
             this.penButton = new System.Windows.Forms.Button();
             this.markerButton = new System.Windows.Forms.Button();
             this.pencilButton = new System.Windows.Forms.Button();
@@ -68,7 +69,6 @@
             this.pnl_Draw = new System.Windows.Forms.PictureBox();
             this.imageSizelbl = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.eraserButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -84,7 +84,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panel1.Controls.Add(this.eraserButton);
             this.panel1.Controls.Add(this.penButton);
             this.panel1.Controls.Add(this.markerButton);
@@ -96,6 +96,16 @@
             this.panel1.Size = new System.Drawing.Size(40, 378);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // eraserButton
+            // 
+            this.eraserButton.Location = new System.Drawing.Point(7, 102);
+            this.eraserButton.Name = "eraserButton";
+            this.eraserButton.Size = new System.Drawing.Size(27, 27);
+            this.eraserButton.TabIndex = 11;
+            this.eraserButton.Text = "E";
+            this.eraserButton.UseVisualStyleBackColor = true;
+            this.eraserButton.Click += new System.EventHandler(this.eraserButton_Click);
             // 
             // penButton
             // 
@@ -351,7 +361,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
@@ -472,7 +482,7 @@
             // 
             // imageSizelbl
             // 
-            this.imageSizelbl.BackColor = System.Drawing.SystemColors.Control;
+            this.imageSizelbl.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.imageSizelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.imageSizelbl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.imageSizelbl.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -486,23 +496,13 @@
             // panel9
             // 
             this.panel9.AutoScroll = true;
-            this.panel9.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel9.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panel9.Controls.Add(this.pnl_Draw);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(744, 451);
             this.panel9.TabIndex = 10;
-            // 
-            // eraserButton
-            // 
-            this.eraserButton.Location = new System.Drawing.Point(7, 102);
-            this.eraserButton.Name = "eraserButton";
-            this.eraserButton.Size = new System.Drawing.Size(27, 27);
-            this.eraserButton.TabIndex = 11;
-            this.eraserButton.Text = "E";
-            this.eraserButton.UseVisualStyleBackColor = true;
-            this.eraserButton.Click += new System.EventHandler(this.eraserButton_Click);
             // 
             // Form1
             // 

@@ -97,7 +97,7 @@ namespace MiniPaint
                     }
                     else if (tool == "eraser")
                     {
-                        Pen er = new Pen(Color.Transparent, float.Parse(txt_ShapeSize.Text));
+                        Pen er = new Pen(Color.White, float.Parse(txt_ShapeSize.Text));
                         System.Diagnostics.Debug.WriteLine("Draw");
                         //gr.SmoothingMode = SmoothingMode.AntiAlias;
                         //gr.CompositingQuality = CompositingQuality.HighQuality;
