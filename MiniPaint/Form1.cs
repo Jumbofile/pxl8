@@ -76,9 +76,9 @@ namespace MiniPaint
                     {
                         Pen pen = new Pen(btn_PenColor.BackColor, float.Parse(txt_ShapeSize.Text));
                         System.Diagnostics.Debug.WriteLine("Draw");
-                        gr.SmoothingMode = SmoothingMode.AntiAlias;
+                        gr.SmoothingMode = SmoothingMode.HighQuality;
                         gr.CompositingQuality = CompositingQuality.HighQuality;
-
+                        gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
                         pen.StartCap = LineCap.Round;
 
                         pen.EndCap = LineCap.Round;
@@ -168,6 +168,7 @@ namespace MiniPaint
                         SolidBrush pen = new SolidBrush(btn_PenColor.BackColor);
                         System.Diagnostics.Debug.WriteLine("Draw");
                         gr.SmoothingMode = SmoothingMode.AntiAlias;
+                        gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
                         Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
                         gr.FillEllipse(pen, e.X - (int.Parse(txt_ShapeSize.Text) / 2), e.Y - (int.Parse(txt_ShapeSize.Text) / 2), int.Parse(txt_ShapeSize.Text), int.Parse(txt_ShapeSize.Text));
