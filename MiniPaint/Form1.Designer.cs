@@ -52,7 +52,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonPen = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,9 +65,10 @@
             this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMiniPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pnl_Draw = new System.Windows.Forms.PictureBox();
             this.imageSizelbl = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pnl_Draw = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -78,8 +78,8 @@
             this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnl_Draw)).BeginInit();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl_Draw)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -348,17 +348,6 @@
             this.buttonPen.TabIndex = 1;
             this.buttonPen.Text = "1";
             // 
-            // button2
-            // 
-            this.button2.Image = global::pxl8.Properties.Resources.pencil;
-            this.button2.Location = new System.Drawing.Point(4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 28);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Pen Tool";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -467,20 +456,6 @@
             this.aboutMiniPaintToolStripMenuItem.Text = "About pxl8";
             this.aboutMiniPaintToolStripMenuItem.Click += new System.EventHandler(this.aboutMiniPaintToolStripMenuItem_Click);
             // 
-            // pnl_Draw
-            // 
-            this.pnl_Draw.BackColor = System.Drawing.Color.White;
-            this.pnl_Draw.BackgroundImage = global::pxl8.Properties.Resources.Transparency10;
-            this.pnl_Draw.Location = new System.Drawing.Point(0, 0);
-            this.pnl_Draw.Name = "pnl_Draw";
-            this.pnl_Draw.Size = new System.Drawing.Size(5000, 5000);
-            this.pnl_Draw.TabIndex = 2;
-            this.pnl_Draw.TabStop = false;
-            this.pnl_Draw.Click += new System.EventHandler(this.pnl_Draw_Click);
-            this.pnl_Draw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnl_Draw_MouseDown);
-            this.pnl_Draw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnl_Draw_MouseMove);
-            this.pnl_Draw.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnl_Draw_MouseUp);
-            // 
             // imageSizelbl
             // 
             this.imageSizelbl.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -504,6 +479,31 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(744, 451);
             this.panel9.TabIndex = 10;
+            // 
+            // button2
+            // 
+            this.button2.Image = global::pxl8.Properties.Resources.pencil;
+            this.button2.Location = new System.Drawing.Point(4, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(122, 28);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Pen Tool";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // pnl_Draw
+            // 
+            this.pnl_Draw.BackColor = System.Drawing.Color.White;
+            this.pnl_Draw.BackgroundImage = global::pxl8.Properties.Resources.Transparency10;
+            this.pnl_Draw.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Draw.Name = "pnl_Draw";
+            this.pnl_Draw.Size = new System.Drawing.Size(5000, 5000);
+            this.pnl_Draw.TabIndex = 2;
+            this.pnl_Draw.TabStop = false;
+            this.pnl_Draw.Click += new System.EventHandler(this.pnl_Draw_Click);
+            this.pnl_Draw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnl_Draw_MouseDown);
+            this.pnl_Draw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnl_Draw_MouseMove);
+            this.pnl_Draw.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnl_Draw_MouseUp);
             // 
             // Form1
             // 
@@ -539,8 +539,8 @@
             this.panel3.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnl_Draw)).EndInit();
             this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnl_Draw)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

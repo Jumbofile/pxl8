@@ -349,7 +349,7 @@ namespace MiniPaint
                 int width = Convert.ToInt32(pnl_Draw.Width);
                 int height = Convert.ToInt32(pnl_Draw.Height);
                 Bitmap bmp = new Bitmap(width, height);
-                pnl_Draw.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
+
                 switch (dialog.FilterIndex)
                 {
                     case 1:
@@ -357,6 +357,19 @@ namespace MiniPaint
                         break;
 
                     case 2:
+                        //Need a white back ground, fuck
+                       
+                        for (int i = 0; i < bm.Width; i++)
+                        {
+                            for (int j = 0; j < bm.Height; j++)
+                            {
+                                Color compare = bm.GetPixel(i, j);
+                                if (compare.Equals(Color.Transparent))
+                                {
+                                    bm.SetPixel(i, j, Color.White);
+                                }
+                            }
+                        }
                         bm.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
                         break;
 
@@ -364,6 +377,7 @@ namespace MiniPaint
                         bm.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
                         break;
                     case 4:
+                        bm.MakeTransparent(Color.Black);
                         bm.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
                         break;
                     case 5:
