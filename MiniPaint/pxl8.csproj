@@ -123,6 +123,7 @@
     <Content Include="Resources\back.png" />
     <Content Include="Resources\pencil.png" />
     <Content Include="Resources\Transparency10.png" />
+    <None Include="Resources\Transparency101.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -228,7 +228,6 @@ namespace MiniPaint
                 centerPanel();
                 System.Diagnostics.Debug.WriteLine("start");
                 Bitmap bitm = new Bitmap(sizes[0], sizes[1]);
-                
                 imageSizelbl.Text = sizes[0] + " x " + sizes[1]+"px";
                 bm = bitm;
             }
@@ -406,7 +405,7 @@ namespace MiniPaint
                 Bitmap bmp = (Bitmap)Image.FromFile(dialog.FileName);
                 panel9.Location = new Point(0, 24);
                 pnl_Draw.Size = new Size(bmp.Width, bmp.Height);
-
+                
                 //center panel
                 centerPanel();
 
@@ -509,8 +508,8 @@ namespace MiniPaint
             new float[]{.189f, .168f, .131f, 0, 0},
             new float[]{0, 0, 0, 1, 0},
             new float[]{0, 0, 0, 0, 1}};
-            System.Drawing.Imaging.ColorMatrix sepiaMatrix = new System.Drawing.Imaging.ColorMatrix(sepiaValues);
-            System.Drawing.Imaging.ImageAttributes IA = new System.Drawing.Imaging.ImageAttributes();
+            ColorMatrix sepiaMatrix = new ColorMatrix(sepiaValues);
+            ImageAttributes IA = new ImageAttributes();
             IA.SetColorMatrix(sepiaMatrix);
             Bitmap sepiaEffect = bm;
             using (Graphics G = Graphics.FromImage(sepiaEffect))
@@ -521,6 +520,10 @@ namespace MiniPaint
             pnl_Draw.Image = bm;
         }
 
-        
+        //TEST
+        private void zoomIn()
+        {
+
+        }
     }
 }
