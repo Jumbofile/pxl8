@@ -440,6 +440,7 @@ namespace MiniPaint
 
         }
 
+        //This centers the image
         private void centerPanel()
         {
             //Center the canvas
@@ -468,55 +469,18 @@ namespace MiniPaint
 
         private void blackAndWhiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //create a blank bitmap the same size as original
-            Bitmap newBitmap = new Bitmap(bm.Width, bm.Height);
+            pxl8.Filters fl = new pxl8.Filters();
 
-            //get a graphics object from the new image
-            Graphics g = Graphics.FromImage(newBitmap);
-
-            //create the grayscale ColorMatrix
-            ColorMatrix colorMatrix = new ColorMatrix(
-               new float[][]
-               {
-                 new float[] {.3f, .3f, .3f, 0, 0},
-                 new float[] {.59f, .59f, .59f, 0, 0},
-                 new float[] {.11f, .11f, .11f, 0, 0},
-                 new float[] {0, 0, 0, 1, 0},
-                 new float[] {0, 0, 0, 0, 1}
-               });
-
-            //create some image attributes
-            ImageAttributes attributes = new ImageAttributes();
-
-            //set the color matrix attribute
-            attributes.SetColorMatrix(colorMatrix);
-
-            //draw the original image on the new image
-            //using the grayscale color matrix
-            g.DrawImage(bm, new Rectangle(0, 0, bm.Width, bm.Height),
-               0, 0, bm.Width, bm.Height, GraphicsUnit.Pixel, attributes);
-
-            bm = newBitmap;
+            bm = fl.applyFilters("bw", bm);
             pnl_Draw.Image = bm;
         }
 
         private void sepiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            float[][] sepiaValues = {
-            new float[]{.393f, .349f, .272f, 0, 0},
-            new float[]{.769f, .686f, .534f, 0, 0},
-            new float[]{.189f, .168f, .131f, 0, 0},
-            new float[]{0, 0, 0, 1, 0},
-            new float[]{0, 0, 0, 0, 1}};
-            ColorMatrix sepiaMatrix = new ColorMatrix(sepiaValues);
-            ImageAttributes IA = new ImageAttributes();
-            IA.SetColorMatrix(sepiaMatrix);
-            Bitmap sepiaEffect = bm;
-            using (Graphics G = Graphics.FromImage(sepiaEffect))
-            {
-                G.DrawImage(pnl_Draw.Image, new Rectangle(0, 0, sepiaEffect.Width, sepiaEffect.Height), 0, 0, sepiaEffect.Width, sepiaEffect.Height, GraphicsUnit.Pixel, IA);
-            }
-            bm = sepiaEffect;
+            pxl8.Filters fl = new pxl8.Filters();
+
+            bm = fl.applyFilters("sp", bm);
+
             pnl_Draw.Image = bm;
         }
 
