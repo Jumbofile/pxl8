@@ -60,7 +60,7 @@ namespace MiniPaint
                         gr.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
                         initX = e.X;
                         initY = e.Y;
-                    }else if (tool == "pencil")
+                    } else if (tool == "pencil")
                     {
                         Pen pencil = new Pen(btn_PenColor.BackColor, int.Parse(txt_ShapeSize.Text));
                         System.Diagnostics.Debug.WriteLine("Draw");
@@ -94,7 +94,32 @@ namespace MiniPaint
                     }
                     else if (tool == "eraser")
                     {
+                        
+                        for (int i = 0; i < int.Parse(txt_ShapeSize.Text); i++) {
+                            for (int j = 0; j < int.Parse(txt_ShapeSize.Text); j++)
+                            {
+                                int mX = e.X - (int.Parse(txt_ShapeSize.Text));
+                                int mY = e.Y - (int.Parse(txt_ShapeSize.Text));
+                                //if (e.X - int.Parse(txt_ShapeSize.Text) > 0 && e.Y - int.Parse(txt_ShapeSize.Text) > 0 &&
+                                //  e.X + int.Parse(txt_ShapeSize.Text) < (pnl_Draw.Width + pnl_Draw.Location.X) - 1 && e.Y + int.Parse(txt_ShapeSize.Text) < (pnl_Draw.Height + pnl_Draw.Location.Y) -1) { 
+                                // bm.SetPixel(mX + i, mY + j, Color.Transparent);
+                                //}  
+                                try {
+                                    bm.SetPixel(mX + i, mY + j, Color.Transparent);
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("LOL");
+                                    //write something to fuck the loops
+                                    i = int.Parse(txt_ShapeSize.Text);
+                                    j = int.Parse(txt_ShapeSize.Text);
+                                }  
+                                
+                            }
+                         }
+                        /*
                         Pen er = new Pen(Color.White, float.Parse(txt_ShapeSize.Text));
+                        
                         System.Diagnostics.Debug.WriteLine("Draw");
                         //gr.SmoothingMode = SmoothingMode.AntiAlias;
                         //gr.CompositingQuality = CompositingQuality.HighQuality;
@@ -110,7 +135,7 @@ namespace MiniPaint
                         Rectangle rect = new Rectangle(pnl_Draw.Location.X, pnl_Draw.Location.Y, pnl_Draw.Width, pnl_Draw.Height);
                         gr.DrawLine(er, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
                         initX = e.X;
-                        initY = e.Y;
+                        initY = e.Y;*/
                     }
                     //gr.FillEllipse(Brushes.LightGreen, rect);
                     // using (Pen thick_pen = new Pen(Color.Blue, 5))
@@ -230,11 +255,13 @@ namespace MiniPaint
                 Bitmap bitm = new Bitmap(sizes[0], sizes[1]);
                 imageSizelbl.Text = sizes[0] + " x " + sizes[1]+"px";
                 bm = bitm;
+               // bitm.Dispose();
             }
             else
             {
 
             }
+           
 
         }
 
@@ -385,7 +412,9 @@ namespace MiniPaint
                         break;
                 }
                 //bmp.Save(dialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                //bmp.Dispose();
             }
+            
         }
 
         private void pnl_Draw_Click(object sender, EventArgs e)
@@ -412,6 +441,7 @@ namespace MiniPaint
                 imageSizelbl.Text = bmp.Width + " x " + bmp.Height + "px";
                 bm = bmp;
                 pnl_Draw.Image = bm;
+               // bmp.Dispose();
             }
         }
 

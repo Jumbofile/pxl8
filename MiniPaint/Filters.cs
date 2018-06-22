@@ -74,6 +74,7 @@ namespace pxl8
                     G.DrawImage(sepiaEffect, new Rectangle(0, 0, sepiaEffect.Width, sepiaEffect.Height), 0, 0, sepiaEffect.Width, sepiaEffect.Height, GraphicsUnit.Pixel, IA);
                 }
                 image = sepiaEffect;
+                
             }
 
             return image;

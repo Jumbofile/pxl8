@@ -150,6 +150,7 @@
             // btn_PenColor
             // 
             this.btn_PenColor.BackColor = System.Drawing.Color.Black;
+            this.btn_PenColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_PenColor.Location = new System.Drawing.Point(5, 347);
             this.btn_PenColor.Name = "btn_PenColor";
             this.btn_PenColor.Size = new System.Drawing.Size(28, 28);
