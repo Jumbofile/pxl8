@@ -1,5 +1,17 @@
+# Pxl8
 
-![alt text](https://i.imgur.com/9NVRLcV.png)
+Free open source raster image editor using winforms and GDI+
+
+## Getting Started
+
+Download through Github for Visual Studios and open .sln or use prefered method for downloading projects and open .sln file.
+
+### Prerequisites
+
+Visual studios
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 
-pxl8 aims to be a free, intuitive, and open source raster graphics editor.
